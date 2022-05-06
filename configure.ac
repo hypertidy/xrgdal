@@ -3,7 +3,7 @@ dnl GDAL stuff largely copied from rgdal, (c) Roger Bivand
 
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
-AC_CONFIG_SRCDIR([src/xrgdal.cpp])
+AC_CONFIG_SRCDIR([src/gdal.cpp])
 
 
 # as at 2021-08-12 sf uses the following flags in src/
