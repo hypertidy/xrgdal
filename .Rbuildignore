@@ -1,3 +1,6 @@
 ^xrgdal\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^config.*
+^proj_conf.*
+^errors.txt$

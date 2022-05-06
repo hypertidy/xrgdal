@@ -9,8 +9,24 @@ xrgdal_Warp <- function(xp, extent, dimension, projection) {
     .Call(`_xrgdal_xrgdal_Warp`, xp, extent, dimension, projection)
 }
 
-xrgdal_RasterIO <- function(xp, window) {
-    .Call(`_xrgdal_xrgdal_RasterIO`, xp, window)
+xrgdal_RasterIO <- function(xp, window, bands) {
+    .Call(`_xrgdal_xrgdal_RasterIO`, xp, window, bands)
+}
+
+xrgdal_GetRasterCount <- function(xp) {
+    .Call(`_xrgdal_xrgdal_GetRasterCount`, xp)
+}
+
+xrgdal_GetRasterBand <- function(xp, band) {
+    .Call(`_xrgdal_xrgdal_GetRasterBand`, xp, band)
+}
+
+xrgdal_GetOverviewCount <- function(xp) {
+    .Call(`_xrgdal_xrgdal_GetOverviewCount`, xp)
+}
+
+xrgdal_GetBlockSize <- function(xp) {
+    .Call(`_xrgdal_xrgdal_GetBlockSize`, xp)
 }
 
 xrgdal_RasterSize <- function(xp) {

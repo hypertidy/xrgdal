@@ -37,14 +37,60 @@ BEGIN_RCPP
 END_RCPP
 }
 // xrgdal_RasterIO
-SEXP xrgdal_RasterIO(SEXP xp, SEXP window);
-RcppExport SEXP _xrgdal_xrgdal_RasterIO(SEXP xpSEXP, SEXP windowSEXP) {
+SEXP xrgdal_RasterIO(SEXP xp, SEXP window, IntegerVector bands);
+RcppExport SEXP _xrgdal_xrgdal_RasterIO(SEXP xpSEXP, SEXP windowSEXP, SEXP bandsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
     Rcpp::traits::input_parameter< SEXP >::type window(windowSEXP);
-    rcpp_result_gen = Rcpp::wrap(xrgdal_RasterIO(xp, window));
+    Rcpp::traits::input_parameter< IntegerVector >::type bands(bandsSEXP);
+    rcpp_result_gen = Rcpp::wrap(xrgdal_RasterIO(xp, window, bands));
+    return rcpp_result_gen;
+END_RCPP
+}
+// xrgdal_GetRasterCount
+SEXP xrgdal_GetRasterCount(SEXP xp);
+RcppExport SEXP _xrgdal_xrgdal_GetRasterCount(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    rcpp_result_gen = Rcpp::wrap(xrgdal_GetRasterCount(xp));
+    return rcpp_result_gen;
+END_RCPP
+}
+// xrgdal_GetRasterBand
+SEXP xrgdal_GetRasterBand(SEXP xp, IntegerVector band);
+RcppExport SEXP _xrgdal_xrgdal_GetRasterBand(SEXP xpSEXP, SEXP bandSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type band(bandSEXP);
+    rcpp_result_gen = Rcpp::wrap(xrgdal_GetRasterBand(xp, band));
+    return rcpp_result_gen;
+END_RCPP
+}
+// xrgdal_GetOverviewCount
+SEXP xrgdal_GetOverviewCount(SEXP xp);
+RcppExport SEXP _xrgdal_xrgdal_GetOverviewCount(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    rcpp_result_gen = Rcpp::wrap(xrgdal_GetOverviewCount(xp));
+    return rcpp_result_gen;
+END_RCPP
+}
+// xrgdal_GetBlockSize
+SEXP xrgdal_GetBlockSize(SEXP xp);
+RcppExport SEXP _xrgdal_xrgdal_GetBlockSize(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    rcpp_result_gen = Rcpp::wrap(xrgdal_GetBlockSize(xp));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -74,7 +120,11 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_xrgdal_GDALOpen_cpp", (DL_FUNC) &_xrgdal_GDALOpen_cpp, 2},
     {"_xrgdal_xrgdal_Warp", (DL_FUNC) &_xrgdal_xrgdal_Warp, 4},
-    {"_xrgdal_xrgdal_RasterIO", (DL_FUNC) &_xrgdal_xrgdal_RasterIO, 2},
+    {"_xrgdal_xrgdal_RasterIO", (DL_FUNC) &_xrgdal_xrgdal_RasterIO, 3},
+    {"_xrgdal_xrgdal_GetRasterCount", (DL_FUNC) &_xrgdal_xrgdal_GetRasterCount, 1},
+    {"_xrgdal_xrgdal_GetRasterBand", (DL_FUNC) &_xrgdal_xrgdal_GetRasterBand, 2},
+    {"_xrgdal_xrgdal_GetOverviewCount", (DL_FUNC) &_xrgdal_xrgdal_GetOverviewCount, 1},
+    {"_xrgdal_xrgdal_GetBlockSize", (DL_FUNC) &_xrgdal_xrgdal_GetBlockSize, 1},
     {"_xrgdal_xrgdal_RasterSize", (DL_FUNC) &_xrgdal_xrgdal_RasterSize, 1},
     {"_xrgdal_xrgdal_GDALClose", (DL_FUNC) &_xrgdal_xrgdal_GDALClose, 1},
     {NULL, NULL, 0}

@@ -81,12 +81,57 @@ SEXP xrgdal_Warp(SEXP xp, NumericVector extent, IntegerVector dimension, Charact
 }
 
 // [[Rcpp::export]]
-SEXP xrgdal_RasterIO(SEXP xp, SEXP window) {
+SEXP xrgdal_RasterIO(SEXP xp, SEXP window, IntegerVector bands) {
   // grab the object as a XPtr (smart pointer)
   // to GDALDataset
   Rcpp::XPtr<GDALDataset> ptr(xp);
-  std::vector<int> band = {1};
-  return gdalraster::gdal_read_dataset_values(ptr, window, band, "Float64", "nearest", false);
+  std::vector<int> readbands(bands.size());
+  for (int i = 0; i < readbands.size(); i++) readbands[i]= bands[i];
+  return gdalraster::gdal_read_band_values(ptr, window, readbands, "Float64", "near", false);
+}
+
+// [[Rcpp::export]]
+SEXP xrgdal_GetRasterCount(SEXP xp) {
+  // grab the object as a XPtr (smart pointer)
+  // to GDALDataset
+  Rcpp::XPtr<GDALDataset> ptr(xp);
+  std::vector<int> n = {ptr->GetRasterCount()};
+  return Rcpp::wrap(n);
+}
+// [[Rcpp::export]]
+SEXP xrgdal_GetRasterBand(SEXP xp, IntegerVector band) {
+  // grab the object as a XPtr (smart pointer)
+  // to GDALDataset
+  Rcpp::XPtr<GDALDataset> ptr(xp);
+  GDALRasterBand * poBand;
+  poBand = ptr->GetRasterBand(band[0]);
+  Rcpp::XPtr<GDALRasterBand> op(poBand);
+  return op;
+}
+
+// [[Rcpp::export]]
+SEXP xrgdal_GetOverviewCount(SEXP xp) {
+  // grab the object as a XPtr (smart pointer)
+  // to GDALDataset
+  Rcpp::XPtr<GDALRasterBand> ptr(xp);
+  int no = ptr->GetOverviewCount();
+
+  return IntegerVector::create(no);
+
+}
+
+// [[Rcpp::export]]
+SEXP xrgdal_GetBlockSize(SEXP xp) {
+
+  Rcpp::XPtr<GDALRasterBand> ptr(xp);
+  int  nx, ny;
+  ptr->GetBlockSize(&nx, &ny);
+  IntegerVector out(2);
+  out[0] = nx;
+  out[1] = ny;
+
+  return out;
+
 }
 // [[Rcpp::export]]
 SEXP xrgdal_RasterSize(SEXP xp) {
