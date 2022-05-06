@@ -37,7 +37,7 @@ SEXP xrgdal_Warp(SEXP xp, NumericVector extent, IntegerVector dimension, Charact
   papszArg = CSLAddString(papszArg, "MEM");
   papszArg = CSLAddString(papszArg, "-r");
 
-  papszArg = CSLAddString(papszArg, "near");
+  papszArg = CSLAddString(papszArg, "bilinear");
 
   papszArg = CSLAddString(papszArg, "-te");
   papszArg = CSLAddString(papszArg, CPLSPrintf("%.18g,", extent[0]));

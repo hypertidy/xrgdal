@@ -137,10 +137,10 @@ like and go with that.
 
 ``` r
 par(mar = rep(0, 4), xpd = NA)
-smalldims <- rep(min(dev.size("px")), 2L)
+smalldims <- rep(max(dev.size("px")), 2L)
 a <- array(unlist(xrgdal_RasterIO(po, window = c(0, 0, dms, smalldims), bands = 1:3)), 
            c(smalldims, 3L))/255
-plot(NA, xlim = c(0, smalldims[1]), ylim = c(0, smalldims[2]), xpd = NA)
+plot(NA, xlim = c(0, smalldims[1]), ylim = c(0, smalldims[2]), xpd = NA, asp = 1)
 rasterImage(aperm(a, c(2, 1, 3)), 0, 0, smalldims[1], smalldims[2])
 ```
 
@@ -150,7 +150,7 @@ rasterImage(aperm(a, c(2, 1, 3)), 0, 0, smalldims[1], smalldims[2])
 
 ``` r
 par(mar = rep(0, 4), xpd = NA)
-smalldims <- rep(min(dev.size("px")), 2L)
+smalldims <- rep(max(dev.size("px")), 2L)
 xlim <- c(-120, -70)
 ylim <- c(30, 60)
 warp <- xrgdal_Warp(po, extent = c(xlim, ylim), dimension = smalldims, projection = "OGC:CRS84")
